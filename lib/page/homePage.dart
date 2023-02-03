@@ -37,48 +37,28 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           body: Container(
-              width: double.infinity,
-              height: double.infinity,
               child: isLoading
                   ? CircularProgressIndicator()
                   : ListView.builder(itemBuilder: (context, index) {
-                      return Container(
-                        color: Colors.orange.shade100,
-                        margin: EdgeInsets.all(3),
-                        padding: EdgeInsets.all(5),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 50,
-                              height: 50,
+                      return Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                        child: ListTile(
+                          tileColor: Colors.orange.shade100,
+                          leading: SizedBox(
+                              width: 100,
+                              height: 100,
                               child: Image.network(
-                                _news!.articles[index].urlToImage ??
-                                  "https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fG5ld3N8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-                                fit: BoxFit.cover,
-                                width: 200,
-                                height: 200,
-                              ),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: 200,
-                                  child: Text(
-                                    _news!.articles[index].title,
-                                    // softWrap: true,
-                                    overflow: TextOverflow.ellipsis,
-                                    // maxLines: 2,
-                                    style: TextStyle(fontSize: 17),
-                                  ),
-                                ),
-                                Text(
-                                  "Source: ${_news!.articles[index].source.name}",
-                                  style: TextStyle(fontSize: 12),
-                                )
-                              ],
-                            ),
-                          ],
+                                _news?.articles[index].urlToImage ?? 'hello',
+                                fit: BoxFit.fill,
+                                height: 100,
+                                width: 100,
+                              )),
+                          title: Text(
+                            _news!.articles[index].title,
+                            maxLines: 3,
+                          ),
+                          subtitle: Text('Source: ${_news!.articles[index].source.name}'),
                         ),
                       );
                     }))
